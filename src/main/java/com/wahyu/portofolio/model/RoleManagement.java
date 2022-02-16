@@ -19,6 +19,5 @@ public class RoleManagement {
     @Column(name = "ROLEID", nullable = false)
     private int roleId;
 
-    @Column(name = "LASTNAME", length = 120, nullable = false)
-    private String lastname;
+
 }

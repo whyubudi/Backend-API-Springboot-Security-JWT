@@ -41,7 +41,7 @@ public class UserManagementController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResponseEntity<?> signup(@RequestBody UserManagement userManagement) {
-        if(userManagementService.findById(userManagement.getUsername()).isPresent()){
+        if(userManagementService.findByUsername(userManagement.getUsername()).isPresent()){
             errorCode.setCode(Constants.USERNAME_EXIST[0]);
             errorCode.setMessage(Constants.USERNAME_EXIST[1]);
             return ResponseEntity.badRequest().body(errorCode);
@@ -75,9 +75,9 @@ public class UserManagementController {
         return userManagementService.findAll();
     }
 
-    @RequestMapping(value = "/find-by-id", method = RequestMethod.GET)
-    public Optional<UserManagement> findById(@RequestParam String username) {
-        return userManagementService.findById(username);
+    @RequestMapping(value = "/find-by-username", method = RequestMethod.GET)
+    public Optional<UserManagement> findByUsername(@RequestParam String username) {
+        return userManagementService.findByUsername(username);
     }
 
     @RequestMapping(value = "/signin", method = RequestMethod.POST)

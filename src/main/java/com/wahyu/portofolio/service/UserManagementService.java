@@ -28,7 +28,7 @@ public class UserManagementService {
     public UserManagement update(UserManagement userManagement){
         UserManagement userManagementToUpdate = userManagementDao.getOne(userManagement.getUsername());
         userManagementToUpdate.setUsername(userManagement.getUsername());
-        userManagementToUpdate.setPassword(encryptPassword(userManagement.getPassword()));
+        userManagementToUpdate.setPassword(userManagement.getPassword());
         userManagementToUpdate.setFirstName(userManagement.getFirstName());
         userManagementToUpdate.setLastName(userManagementToUpdate.getLastName());
         userManagementToUpdate.setAddress(userManagement.getAddress());
@@ -36,7 +36,7 @@ public class UserManagementService {
         return userManagementDao.save(userManagementToUpdate);
     }
 
-    public Optional<UserManagement> findById(String username){
+    public Optional<UserManagement> findByUsername(String username){
         return userManagementDao.findById(username);
     }
 
