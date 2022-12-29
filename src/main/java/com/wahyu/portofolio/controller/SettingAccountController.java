@@ -1,12 +1,12 @@
 package com.wahyu.portofolio.controller;
 
-import com.wahyu.portofolio.model.Constants;
+import com.wahyu.portofolio.constant.Constants;
 import com.wahyu.portofolio.model.RequestForgotPassword;
 import com.wahyu.portofolio.model.UserManagement;
-import com.wahyu.portofolio.model.requestbody.ChangePassword;
-import com.wahyu.portofolio.model.requestbody.ForgotPassword;
-import com.wahyu.portofolio.model.requestbody.Mail;
-import com.wahyu.portofolio.model.responsebody.ErrorCode;
+import com.wahyu.portofolio.dto.requestbody.ChangePassword;
+import com.wahyu.portofolio.dto.requestbody.ForgotPassword;
+import com.wahyu.portofolio.dto.requestbody.Mail;
+import com.wahyu.portofolio.dto.responsebody.ErrorCode;
 import com.wahyu.portofolio.service.HelperService;
 import com.wahyu.portofolio.service.MailService;
 import com.wahyu.portofolio.service.RequestForgotPasswordService;

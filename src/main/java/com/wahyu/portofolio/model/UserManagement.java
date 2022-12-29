@@ -2,6 +2,7 @@ package com.wahyu.portofolio.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
+import com.wahyu.portofolio.dto.Default;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "USER_MANAGEMENT")
 @EntityListeners(AuditingEntityListener.class)
-public class UserManagement extends Default{
+public class UserManagement extends Default {
 
     @Id
     @NotNull

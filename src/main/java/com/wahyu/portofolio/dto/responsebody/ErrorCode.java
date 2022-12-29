@@ -1,4 +1,4 @@
-package com.wahyu.portofolio.model.responsebody;
+package com.wahyu.portofolio.dto.responsebody;
 
 
 import lombok.Getter;

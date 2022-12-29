@@ -1,4 +1,4 @@
-package com.wahyu.portofolio.model;
+package com.wahyu.portofolio.constant;
 
 import org.springframework.beans.factory.annotation.Value;
 

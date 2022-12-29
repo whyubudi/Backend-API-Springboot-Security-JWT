@@ -3,7 +3,7 @@ package com.wahyu.portofolio.security;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.wahyu.portofolio.model.Constants;
+import com.wahyu.portofolio.constant.Constants;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 

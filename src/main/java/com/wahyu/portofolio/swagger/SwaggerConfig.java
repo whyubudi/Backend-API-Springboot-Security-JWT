@@ -1,4 +1,4 @@
-package com.wahyu.portofolio.security;
+package com.wahyu.portofolio.swagger;
 
 
 import org.springframework.context.annotation.Bean;

@@ -1,6 +1,6 @@
 package com.wahyu.portofolio.dao;
 
-import com.wahyu.portofolio.model.Constants;
+import com.wahyu.portofolio.constant.Constants;
 import com.wahyu.portofolio.model.RequestForgotPassword;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,8 +1,8 @@
 package com.wahyu.portofolio.controller;
 
-import com.wahyu.portofolio.model.Constants;
-import com.wahyu.portofolio.model.requestbody.DynamicQuery;
-import com.wahyu.portofolio.model.responsebody.ErrorCode;
+import com.wahyu.portofolio.constant.Constants;
+import com.wahyu.portofolio.dto.requestbody.DynamicQuery;
+import com.wahyu.portofolio.dto.responsebody.ErrorCode;
 import com.wahyu.portofolio.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

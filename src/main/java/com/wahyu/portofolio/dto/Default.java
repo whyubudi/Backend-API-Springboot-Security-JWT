@@ -1,4 +1,4 @@
-package com.wahyu.portofolio.model;
+package com.wahyu.portofolio.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

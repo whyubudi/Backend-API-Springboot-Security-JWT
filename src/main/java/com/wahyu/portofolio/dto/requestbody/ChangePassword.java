@@ -1,4 +1,4 @@
-package com.wahyu.portofolio.model.requestbody;
+package com.wahyu.portofolio.dto.requestbody;
 
 import lombok.Getter;
 import lombok.Setter;

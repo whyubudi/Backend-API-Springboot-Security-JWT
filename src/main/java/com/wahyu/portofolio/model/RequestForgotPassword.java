@@ -1,5 +1,6 @@
 package com.wahyu.portofolio.model;
 
+import com.wahyu.portofolio.dto.Default;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "REQUEST_FORGOT_PASSWORD")
 @EntityListeners(AuditingEntityListener.class)
-public class RequestForgotPassword extends Default{
+public class RequestForgotPassword extends Default {
 
     @Id
     @GeneratedValue(generator = "uuid")

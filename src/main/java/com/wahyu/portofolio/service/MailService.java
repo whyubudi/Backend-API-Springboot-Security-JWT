@@ -1,6 +1,6 @@
 package com.wahyu.portofolio.service;
 
-import com.wahyu.portofolio.model.requestbody.Mail;
+import com.wahyu.portofolio.dto.requestbody.Mail;
 import org.springframework.beans.factory.annotation.Autowired;
 
 

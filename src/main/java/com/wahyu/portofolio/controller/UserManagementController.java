@@ -1,17 +1,14 @@
 package com.wahyu.portofolio.controller;
 
-import com.wahyu.portofolio.model.Constants;
+import com.wahyu.portofolio.constant.Constants;
 import com.wahyu.portofolio.model.UserManagement;
-import com.wahyu.portofolio.model.requestbody.SigninRequest;
-import com.wahyu.portofolio.model.responsebody.ErrorCode;
-import com.wahyu.portofolio.model.responsebody.SignInResponse;
+import com.wahyu.portofolio.dto.requestbody.SigninRequest;
+import com.wahyu.portofolio.dto.responsebody.ErrorCode;
+import com.wahyu.portofolio.dto.responsebody.SignInResponse;
 import com.wahyu.portofolio.security.jwt.JwtTokenUtil;
 import com.wahyu.portofolio.security.jwt.JwtUserDetailsService;
-import com.wahyu.portofolio.service.MailService;
 import com.wahyu.portofolio.service.RoleManagementService;
 import com.wahyu.portofolio.service.UserManagementService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
