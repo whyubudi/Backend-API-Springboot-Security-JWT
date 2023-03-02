@@ -7,4 +7,5 @@ public class SmsRequest {
 
     private String contact;
     private String message;
+    private String user;
 }

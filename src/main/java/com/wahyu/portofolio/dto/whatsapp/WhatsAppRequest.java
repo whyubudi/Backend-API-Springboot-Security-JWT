@@ -7,5 +7,6 @@ public class WhatsAppRequest {
 
     private String phoneNumber;
     private String message;
+    private String user;
 
 }

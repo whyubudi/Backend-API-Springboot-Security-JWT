@@ -1,19 +1,23 @@
 package com.wahyu.portofolio.service;
 
-import com.wahyu.portofolio.dao.WaResponseCodeDao;
+import com.wahyu.portofolio.constant.NotificationStatus;
+import com.wahyu.portofolio.dao.NotificationRepo;
+import com.wahyu.portofolio.dao.WaResponseCodeRepo;
 import com.wahyu.portofolio.dto.whatsapp.WhatsAppRequest;
+import com.wahyu.portofolio.model.Notification;
 import com.wahyu.portofolio.model.WaResponseCode;
 import com.wahyu.portofolio.util.PhoneNumberUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -41,13 +45,17 @@ public class WhatsAppService {
     private String waUploadByNotification;
     @Value("${wa.gateway.type}")
     private String waGatewayProvider;
+
     @Value("${proxy.host}")
     private String hostProxy;
     @Value("${proxy.port}")
     private int portProxy;
 
     @Autowired
-    private WaResponseCodeDao waResponseCodeDao;
+    private WaResponseCodeRepo waResponseCodeRepo;
+
+    @Autowired
+    private NotificationRepo notificationRepo;
 
 
     public Map<String, Object> sendWhatsApp(WhatsAppRequest whatsAppRequest) throws Exception {
@@ -79,17 +87,49 @@ public class WhatsAppService {
                 Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(hostProxy,portProxy));
                 SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
                 requestFactory.setProxy(proxy);
-                RestTemplate restTemplate = new RestTemplate(requestFactory);
+                RestTemplate restTemplate = new RestTemplate();
                 String response = restTemplate.getForObject(url, String.class, message);
                 log.info("response : {} ", response);
 
                 String rc = response.split("&")[0].split("=")[1];
-                WaResponseCode waResponseCode = waResponseCodeDao.findAllByResponseCode(Integer.valueOf(rc));
+                WaResponseCode waResponseCode = waResponseCodeRepo.findAllByResponseCode(Integer.valueOf(rc));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String date1 = sdf.format(new Date());
+
+
+                Notification notification = new Notification();
+                if (waResponseCode.getResponseStatus().equals(1)) {
+                    notification.setUser(whatsAppRequest.getUser());
+                    notification.setPhoneNumber(whatsAppRequest.getPhoneNumber());
+                    notification.setMessage(whatsAppRequest.getMessage());
+                    notification.setDateSent(Timestamp.valueOf(date1));
+                    notification.setStatus(String.valueOf(NotificationStatus.SUCCESS));
+                    notification.setNotifType("whatsapp");
+                    notificationRepo.save(notification);
+                }else {
+                    notification.setUser(whatsAppRequest.getUser());
+                    notification.setPhoneNumber(whatsAppRequest.getPhoneNumber());
+                    notification.setMessage(whatsAppRequest.getMessage());
+                    notification.setDateSent(Timestamp.valueOf(date1));
+                    notification.setStatus(String.valueOf(NotificationStatus.FAILED));
+                    notification.setNotifType("whatsapp");
+                    notificationRepo.save(notification);
+                }
                 resp = new HashMap<>();
                 resp.put("responseCode", waResponseCode.getResponseCode());
                 resp.put("responseStatus", waResponseCode.getResponseStatus());
             }
         } catch (Exception e) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date1 = sdf.format(new Date());
+            Notification notification = new Notification();
+            notification.setUser(whatsAppRequest.getUser());
+            notification.setPhoneNumber(whatsAppRequest.getPhoneNumber());
+            notification.setMessage(whatsAppRequest.getMessage());
+            notification.setDateSent(Timestamp.valueOf(date1));
+            notification.setStatus(String.valueOf(NotificationStatus.FAILED));
+            notification.setNotifType("whatsapp");
+            notificationRepo.save(notification);
             log.error("Failed send wa : ", e);
             throw e;
         }
